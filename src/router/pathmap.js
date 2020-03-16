@@ -6,6 +6,10 @@ const pathmap = [
   {
     path: '/page2',
     component: () => import('@/components/page2.vue'),
+  },
+  {
+    path: '*',
+    component: () => import('@/components/NotFoundComponent.vue'),
   }
 ]
 
