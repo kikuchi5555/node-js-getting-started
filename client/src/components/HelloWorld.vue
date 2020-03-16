@@ -1,14 +1,14 @@
 <script>
-  // import vue2Dropzone from 'vue2-dropzone'
-  // import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+  import vue2Dropzone from 'vue2-dropzone'
+  import 'vue2-dropzone/dist/vue2Dropzone.min.css'
   import axios from "axios";
   import { mapState } from 'vuex'
 
   export default {
     name: 'hello-world',
-    // components: {
-    //   vueDropzone: vue2Dropzone
-    // },
+    components: {
+      vueDropzone: vue2Dropzone
+    },
     data: () => ({
       ecosystem: [
         {
@@ -72,20 +72,20 @@
       ]),
     },
     mounted () {
-      // axios.get('http://localhost:8888/images').then(res => {
-      //   res.data.forEach(res => {
-      //     // filename 所得
-      //     let filename = res.path.replace('http://localhost:8888/', '')
-      //     // uuid 所得
-      //     let id = filename.replace('.png', '')
-      //     // file オブジェクト作成
-      //     var file = {size: res.size, name: filename, type: "image/png", upload: {uuid: id}}
-      //     // コードからform に画像データをセット
-      //     this.$refs.myVueDropzone.manuallyAddFile(file, res.path)
-      //   })
-      // }).catch(err => {
-      //   console.error(err)
-      // })
+      axios.get('http://localhost:8888/images').then(res => {
+        res.data.forEach(res => {
+          // filename 所得
+          let filename = res.path.replace('http://localhost:8888/', '')
+          // uuid 所得
+          let id = filename.replace('.png', '')
+          // file オブジェクト作成
+          var file = {size: res.size, name: filename, type: "image/png", upload: {uuid: id}}
+          // コードからform に画像データをセット
+          this.$refs.myVueDropzone.manuallyAddFile(file, res.path)
+        })
+      }).catch(err => {
+        console.error(err)
+      })
     },
     // methods を追加 formデータとして fileに付けられた任意のuuidを付加
     methods: {
@@ -108,12 +108,12 @@
   v-container
     p
       | カウント： {{ count }}
-    //- <!-- sendingEventを追加 -->
-    //- vue-dropzone(
-    //-   ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
-    //-   v-on:vdropzone-sending="sendingEvent"
-    //-   v-on:vdropzone-removed-file="removeEvent"
-    //- )
+    <!-- sendingEventを追加 -->
+    vue-dropzone(
+      ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
+      v-on:vdropzone-sending="sendingEvent"
+      v-on:vdropzone-removed-file="removeEvent"
+    )
     v-row.text-center
       v-col(cols="12")
         v-img.my-3(
