@@ -1,9 +1,6 @@
-FROM node:11.7.0-slim
-
+# 開発環境
+FROM node:10.13-alpine as build-stage
 WORKDIR /app
-
 COPY . /app
-
-RUN npm i
-
-CMD npm start
+RUN yarn install
+CMD yarn start
