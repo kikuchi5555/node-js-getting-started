@@ -1,6 +1,7 @@
 package main // import "server"
 
 import (
+    "os"
     "server/handler"
 
     "github.com/gin-contrib/cors"
@@ -10,6 +11,7 @@ import (
 
 func main() {
     r := gin.Default()
+    port := os.Getenv("PORT")
 
     r.Use(cors.New(cors.Config{
         AllowOrigins: []string{"http://localhost:8080"},
